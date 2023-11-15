@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\category;
+use App\Models\Category;
 use Illuminate\Console\Command;
 
 class CreateCategory extends Command
@@ -26,7 +26,7 @@ class CreateCategory extends Command
      */
     public function handle()
     {
-        category::create(['name' => $this->argument('name')]);
+        Category::create(['name' => $this->argument('name')]);
 
         $this->info('Category created successfully!');
     }
