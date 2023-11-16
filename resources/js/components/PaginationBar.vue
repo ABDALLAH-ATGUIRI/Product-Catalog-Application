@@ -1,15 +1,21 @@
 <template>
-    <div>
+    <div class="container">
         <!-- Pagination controls -->
-        <div>
-            <button @click="prevPage" :disabled="currentPage === 1">
-                Previous
-            </button>
-            <span>Page {{ currentPage }} of {{ totalPages }}</span>
-            <button @click="nextPage" :disabled="currentPage === totalPages">
-                Next
-            </button>
-        </div>
+        <ul class="pagination">
+            <li class="icon">
+                <button @click="prevPage">
+                    <span class="fas fa-angle-left"></span>Previous
+                </button>
+            </li>
+            <li v-for="i in 5" :key="i">
+                <button>{{ i }}</button>
+            </li>
+            <li class="icon">
+                <button @click="nextPage">
+                    Next<span class="fas fa-angle-right"></span>
+                </button>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -37,4 +43,52 @@ const prevPage = () => {
 </script>
 
 <style scoped>
+.container {
+    padding: 50px;
+}
+.pagination {
+    margin: 25px 0 15px 0;
+}
+.pagination,
+.pagination li button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.pagination li {
+    background: #a8a8a8;
+    list-style: none;
+}
+.pagination li button {
+    text-decoration: none;
+    height: 50px;
+    width: 50px;
+    font-size: 18px;
+    padding-top: 1px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-right-width: 0px;
+    box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.35);
+}
+.pagination li:last-child button {
+    border-right-width: 1px;
+}
+.pagination li button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-top-color: rgba(0, 0, 0, 0.35);
+    border-bottom-color: rgba(0, 0, 0, 0.5);
+}
+.pagination li button:focus,
+.pagination li button:active {
+    padding-top: 4px;
+    border-left-width: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0px 2px 1px 0px rgba(0, 0, 0, 0.25);
+}
+.pagination li.icon button {
+    min-width: 120px;
+}
+.pagination li:first-child span {
+    padding-right: 8px;
+}
 </style>
