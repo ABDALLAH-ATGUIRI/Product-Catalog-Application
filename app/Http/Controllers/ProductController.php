@@ -57,8 +57,8 @@ class ProductController extends Controller
     /**
      * Search specified product.
      */
-    public function search(SearchProductAction $searchProductAction, Request $request)
+    public function search(SearchProductAction $searchProductAction, $request)
     {
-        return Inertia::render('Products/search', ['products' => $searchProductAction->execute($request->validated())]);
+        return  response()->json(['products' => $searchProductAction->execute($request)]);
     }
 }

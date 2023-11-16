@@ -10,9 +10,9 @@ class SearchProductAction
     {
         $query = Product::query();
 
-        if ($data['category_name']) {
+        if ($data['category_id']) {
             $query->whereHas('categories', function ($categoryQuery) use ($data) {
-                $categoryQuery->where('name', $data['category_name']);
+                $categoryQuery->where('id', $data['category_id']);
             });
         }
 
