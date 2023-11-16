@@ -6,16 +6,16 @@ use App\Models\Product;
 
 class ReadProductAction
 {
-    public function execute(array $data)
+    public function execute()
     {
-        $products = Product::with(['category'])->latest()->paginate(5);
+        $products = Product::paginate(10);
 
-        return response()->json([
+        return [
             'products' => $products->items(),
             'current_page' => $products->currentPage(),
             'per_page' => $products->perPage(),
             'total' => $products->total(),
             'last_page' => $products->lastPage(),
-        ]);
+        ];
     }
 }
