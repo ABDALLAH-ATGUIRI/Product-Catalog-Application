@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index(ReadAllCategoriesAction $readAllCategoriesAction)
     {
-        return Inertia::render('Categories/Index', ['categories' => $readAllCategoriesAction]);
+        return response()->json(['categories' => $readAllCategoriesAction->execute()]);
     }
 
     /**
