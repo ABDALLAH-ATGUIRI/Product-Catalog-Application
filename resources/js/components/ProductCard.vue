@@ -2,25 +2,26 @@
     <div class="product">
         <figure>
             <img
-                src="https://raw.githubusercontent.com/itbruno/productpreview/master/assets/img/t-shirt.jpg"
+                :src="`http://127.0.0.1:8000/storage/${info.image}`"
                 alt="Product Image"
                 class="product-image"
             />
         </figure>
-
         <div class="product-description">
             <div class="info">
-                <h1>LOREM IPSUM</h1>
-                <p>
-                    Lorem Ipsum is simply dummy printing and typesetting
-                    industry
-                </p>
+                <h1>{{ info.name }}</h1>
+                <p>{{ info.description }}</p>
             </div>
 
-            <div class="price">89 DH</div>
+            <div class="price">{{ info.price }}<br />DH</div>
         </div>
     </div>
 </template>
+
+<script setup>
+const props = defineProps({ info: { type: Array, required: true } });
+</script>
+
 <style lang="css" scoped>
 /* Titles */
 h1,
@@ -35,6 +36,7 @@ h6 {
 }
 img {
     max-width: 100%;
+    height: 300px;
 }
 figure {
     margin: 0;
@@ -55,6 +57,7 @@ figure {
     background: #fff;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 .info {
     width: 70%;
@@ -65,12 +68,13 @@ figure {
 
 .info > p {
     font-size: 18px;
+    margin: 0;
 }
 .price {
     width: 30%;
     float: left;
     color: #9bb6aa;
-    font-size: 2.5em;
+    font-size: 2em;
     position: relative;
     text-align: center;
 }
