@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index(ReadProductAction $readProductAction)
     {
-        return Inertia::render('Products/Index', ['products' => $readProductAction]);
+        return Inertia::render('Products/Index', ['products' => $readProductAction->execute()]);
     }
 
     /**
@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function create(CreateProduct $createProductAction, ProductRequest $request)
     {
-        return Inertia::render('Products/create', ['products' => $createProductAction($request)]);
+        return Inertia::render('Products/create', ['products' => $createProductAction->execute($request->validated())]);
     }
 
     /**
@@ -43,7 +43,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductAction $updateProductAction, ProductRequest $request, string $id)
     {
-        return Inertia::render('Products/update', ['products' => $updateProductAction($request, $id)]);
+        return Inertia::render('Products/update', ['products' => $updateProductAction->execute($request->validated(), $id)]);
     }
 
     /**
@@ -51,7 +51,7 @@ class ProductController extends Controller
      */
     public function destroy(DeleteProductAction $deleteProductAction, string $id)
     {
-        return Inertia::render('Products/delete', ['products' => $deleteProductAction($id)]);
+        return Inertia::render('Products/delete', ['products' => $deleteProductAction->execute($id)]);
     }
 
     /**
@@ -59,6 +59,6 @@ class ProductController extends Controller
      */
     public function search(SearchProductAction $searchProductAction, Request $request)
     {
-        return Inertia::render('Products/search', ['products' => $searchProductAction($request)]);
+        return Inertia::render('Products/search', ['products' => $searchProductAction->execute($request->validated())]);
     }
 }

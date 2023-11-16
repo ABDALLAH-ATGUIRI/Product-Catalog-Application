@@ -24,7 +24,7 @@ class CategoryController extends Controller
      */
     public function create(CreateCategoryAction $createCategoryAction, CategoryRequest $categoryRequest)
     {
-        return Inertia::render('Categories/create', ['categories' => $createCategoryAction($categoryRequest)]);
+        return Inertia::render('Categories/create', ['categories' => $createCategoryAction->execute($categoryRequest->validated())]);
     }
 
     /**
@@ -32,7 +32,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryAction $updateCategoryAction, CategoryRequest $categoryRequest, string $id)
     {
-        return Inertia::render('Categories/update', ['categories' => $updateCategoryAction($categoryRequest, $id)]);
+        return Inertia::render('Categories/update', ['categories' => $updateCategoryAction->execute($categoryRequest->validated(), $id)]);
     }
 
     /**
@@ -40,6 +40,6 @@ class CategoryController extends Controller
      */
     public function destroy(DeleteCategoryAction $deleteCategoryAction, string $id)
     {
-        return Inertia::render('Categories/delete', ['categories' => $deleteCategoryAction($id)]);
+        return Inertia::render('Categories/delete', ['categories' => $deleteCategoryAction->execute($id)]);
     }
 }
